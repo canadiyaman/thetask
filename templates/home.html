@@ -1,0 +1,45 @@
+{% extends "base.html" %}{% load i18n static %}
+{% block title %}{% trans "home"|title %}{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% if not subscription %}
+                <br><br><br>
+                <div class="text-center">
+                    <h3>
+                        {% trans "you have not any subscription, you should start your membership"|title %}</h3>
+                    <a href="{% url "payment:charge" %}">{% trans "click for start"|title %}</a>
+                </div>
+            {% else %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">{% trans "image"|title %}</th>
+                        <th scope="col">{% trans "title"|title %}</th>
+                        <th scope="col">Isbn13</th>
+                        <th scope="col">{% trans "price"|title %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for book in books %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td><img height="50" width="40" src="{{ book.image }}" alt=""></td>
+                            <td>{{ book.title }}<br>
+                                <small>{{ book.subtitle|truncatechars:50 }}</small>
+                            </td>
+                            <td>{{ book.isbn13 }}</td>
+                            <td>{{ book.price }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <th class="text-center" colspan="5" scope="row">{% trans "no result"|title %}</th>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

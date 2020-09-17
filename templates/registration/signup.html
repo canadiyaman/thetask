@@ -1,0 +1,25 @@
+{% load i18n static %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{% static "css/login.css" %}">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="wrapper fadeInDown">
+  <div id="formContent"><br>
+    <h4>{% trans "register form" %}</h4>
+    <form method="post" action="{% url "user:signup" %}">
+      {% csrf_token %}
+        {{ form }}
+{#      <input type="text" id="login" class="fadeIn second" name="username" placeholder="{% trans "username" %}">#}
+{#      <input type="text" id="email" class="fadeIn third" name="email" placeholder="{% trans "email" %}">#}
+{#      <input type="text" id="password1" class="fadeIn third" name="password1" placeholder="{% trans "password" %}">#}
+{#      <input type="text" id="password2" class="fadeIn third" name="password2" placeholder="{% trans "re password" %}">#}
+        <br><br><br>
+      <input type="submit" class="fadeIn fourth" value="{% trans "register" %}">
+    </form>
+    <div id="formFooter">
+      <a class="underlineHover" href="{% url "user:login" %}">{% trans "login" %}</a>
+    </div>
+
+  </div>
+</div>
